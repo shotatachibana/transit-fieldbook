@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- 公共交通野帳のアイコン(黒地に白の電車の正面) -->
-  <rect width="32" height="32" rx="7" fill="#202124"/>
-  <rect x="8.5" y="5" width="15" height="17.5" rx="4.5" fill="#fff"/>
-  <rect x="11" y="8" width="10" height="6.5" rx="1.6" fill="#202124"/>
-  <circle cx="12.6" cy="18.4" r="1.4" fill="#202124"/>
-  <circle cx="19.4" cy="18.4" r="1.4" fill="#202124"/>
-  <path d="M11.5 23.5 8 28M20.5 23.5 24 28" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-</svg>

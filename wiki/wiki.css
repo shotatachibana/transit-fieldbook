@@ -113,6 +113,14 @@ h1 { margin: 0; font: 460 40px/48px var(--sans); overflow-wrap: anywhere; }
 .md p { margin: 0 0 16px; }
 .md p.term-en { color: var(--muted); font-style: italic; }
 .md ul, .md ol { margin: 0 0 16px; padding-left: 2em; }
+.md li > ul, .md li > ol { margin: 4px 0 0; }
+.md h4 { margin: 24px 0 8px; font-size: 16px; font-weight: 600; }
+.md blockquote { margin: 0 0 16px; padding: 0 1em; color: var(--muted); border-left: .25em solid var(--line); }
+.md code { padding: .2em .4em; font-size: 85%; background: var(--subtle); border-radius: 6px; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+.md pre { margin: 0 0 16px; padding: 16px; overflow-x: auto; background: var(--subtle); border-radius: 6px; line-height: 1.45; }
+.md pre code { padding: 0; font-size: 85%; background: none; }
+.md hr { height: 1px; margin: 24px 0; border: 0; background: var(--line); }
+.md .wl-missing { color: var(--neg); }
 .note { font-size: 14px; color: var(--muted); }
 .table-wrap { overflow-x: auto; margin: 0 0 16px; }
 table { border-collapse: collapse; width: 100%; font-size: 14px; line-height: 1.6; }
