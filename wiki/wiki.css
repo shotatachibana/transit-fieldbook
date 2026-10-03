@@ -168,7 +168,8 @@ footer.foot { margin-top: 64px; border-top: 2px solid var(--fg); font-size: 14px
 footer.foot p { margin: 0 0 8px; }
 .foot-main { display: flex; gap: 24px; align-items: flex-start; justify-content: space-between; padding: 32px 40px 16px; }
 /* GitHub Docsのフッターと同じく，薄い区切り線をフッターの左右端まで引く */
-.foot-links { border-top: 1px solid var(--line); padding: 16px 40px 48px; }
+.foot-links { border-top: 1px solid var(--line); padding: 16px 40px; }  /* 下の余白は線との間と同じ16px */
+.foot-links p:last-child { margin-bottom: 0; }
 footer.foot a { text-decoration: none; }
 footer.foot a:hover { text-decoration: underline; }
 footer.foot a.author, footer.foot a.plain { color: var(--fg); }  /* 作成者・公共交通野帳はリンクの青でなく文字色 */
@@ -227,7 +228,7 @@ body.home footer.foot { margin-top: 0; }
   .brand { font-size: 1.25rem; }
   article { padding: 24px 16px 0; }
   .foot-main { padding: 24px 16px 16px; flex-direction: column; }
-  .foot-links { padding: 16px 16px 40px; }
+  .foot-links { padding: 16px; }
   .hero h1 { font-size: 40px; line-height: 1.15; letter-spacing: normal; }
   .home-gap { height: 24px; }
   .home-all h2 { font-size: 22px; line-height: 1.3; }
