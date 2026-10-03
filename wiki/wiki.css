@@ -14,9 +14,8 @@
 html { scroll-padding-top: calc(var(--header-h) + 16px); }
 body {
   margin: 0; background: var(--bg); color: var(--fg); font-size: 16px; line-height: 1.5;
-  font-family: "Google Sans Text", "Google Sans", "Noto Sans JP", sans-serif;
+  font-family: sans-serif;  /* 日本語版Wikipediaと同じ．Webフォントは使わず閲覧環境の標準ゴシック体 */
 }
-h1, h2, h3, .brand, .side .product { font-family: "Google Sans", "Noto Sans JP", sans-serif; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 .hdr {
