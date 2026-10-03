@@ -9,8 +9,7 @@
     if (!toggle) return;
     var open = wide.matches ? !body.classList.contains('side-collapsed') : body.classList.contains('nav-open');
     toggle.setAttribute('aria-expanded', open);
-    toggle.dataset.tip = open ? 'サイドバーを折りたたむ' : 'サイドバーを展開する';
-    toggle.setAttribute('aria-label', toggle.dataset.tip);
+    toggle.setAttribute('aria-label', open ? 'サイドバーを折りたたむ' : 'サイドバーを展開する');
   }
   if (toggle) toggle.addEventListener('click', function () {
     if (wide.matches) {
