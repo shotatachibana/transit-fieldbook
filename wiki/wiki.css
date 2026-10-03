@@ -14,8 +14,9 @@
 html { scroll-padding-top: calc(var(--header-h) + 16px); }
 body {
   margin: 0; background: var(--bg); color: var(--fg); font-size: 16px; line-height: 1.5;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", Meiryo, Helvetica, Arial, sans-serif;
+  font-family: "Google Sans Text", "Google Sans", "Noto Sans JP", sans-serif;
 }
+h1, h2, h3, .brand, .side .product { font-family: "Google Sans", "Noto Sans JP", sans-serif; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 .hdr {
