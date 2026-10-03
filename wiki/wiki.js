@@ -31,19 +31,9 @@
   scrollSideToCurrent();
 
   // ヘッダー(狭い画面の検索)
-  document.getElementById('search-btn').addEventListener('click', function (ev) {
-    if (heroSearch) { ev.stopPropagation(); openModal(); return; }
+  document.getElementById('search-btn').addEventListener('click', function () {
     body.classList.add('search-open'); input.focus();
   });
-
-  // 検索ダイアログ(トップページ．画面を暗くしてヘッダーの検索欄を中央に浮かせる)
-  var backdrop = document.getElementById('search-backdrop'), heroSearch = document.getElementById('hero-search');
-  function openModal() { body.classList.add('search-modal'); backdrop.hidden = false; input.focus(); if (input.value.trim()) render(input.value.trim()); }
-  function closeModal() { body.classList.remove('search-modal'); if (backdrop) backdrop.hidden = true; box.hidden = true; }
-  if (heroSearch) {
-    heroSearch.addEventListener('click', function (ev) { ev.stopPropagation(); openModal(); });
-    backdrop.addEventListener('click', closeModal);
-  }
 
   // ページ内目次(狭い画面の「この記事で」と，いま読んでいる節の強調)
   var tocBtn = document.getElementById('toc-btn'), tocPop = document.getElementById('toc-pop');
@@ -98,7 +88,7 @@
       links[sel].scrollIntoView({block: 'nearest'});
     } else if (ev.key === 'Enter' && links.length) {
       location.href = links[Math.max(sel, 0)].href;
-    } else if (ev.key === 'Escape') { box.hidden = true; input.blur(); body.classList.remove('search-open'); closeModal(); }
+    } else if (ev.key === 'Escape') { box.hidden = true; input.blur(); body.classList.remove('search-open'); }
   });
   document.addEventListener('click', function (ev) {
     if (!ev.target.closest('.search')) box.hidden = true;
@@ -109,8 +99,7 @@
     var t = document.activeElement && document.activeElement.tagName;
     if (ev.key === '/' && t !== 'INPUT' && t !== 'TEXTAREA') {
       ev.preventDefault();
-      if (heroSearch) { openModal(); return; }
       if (!wide.matches && window.innerWidth < 768) body.classList.add('search-open'); input.focus();
-    } else if (ev.key === 'Escape') { closeModal(); closeToc(); body.classList.remove('nav-open'); syncToggle(); }
+    } else if (ev.key === 'Escape') { closeToc(); body.classList.remove('nav-open'); syncToggle(); }
   });
 })();

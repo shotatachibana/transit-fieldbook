@@ -185,11 +185,6 @@ body.home { --top-h: var(--hdr-h); }
 .hero-title { padding: 64px 24px 24px; }
 .hero h1 { font: 425 64px/1.08 var(--sans); letter-spacing: -0.035em; }
 .hero-lead { margin: 16px 0 0; font: 400 16px/24px var(--sans); letter-spacing: .015em; color: var(--muted); }
-.hero-search { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 16px; padding: 24px;
-  background: var(--subtle); border: 0; border-top: 1px solid var(--line); cursor: pointer; text-align: left; }
-.hero-search span { font: 400 24px/36px var(--sys); color: var(--muted); }
-.hero-search kbd { font: 400 20px/20px var(--sys); padding: 6px 12px; color: var(--fg); background: var(--line);
-  border: 1px solid #d1d9e0b3; border-radius: 8px; }
 .home-gap { height: 64px; border-bottom: 1px solid var(--line); }
 .home-all h2 { margin: 0; padding: 48px 32px 24px; font: 480 28px/1.35 var(--sans); }
 .home-grid { display: grid; grid-template-columns: repeat(4, auto); }
@@ -202,13 +197,9 @@ body.home { --top-h: var(--hdr-h); }
 .home-link svg.ic { display: inline-block; margin-left: 4px; vertical-align: -2px; }
 .home-end { height: 64px; border-top: 1px solid var(--line); }
 body.home footer.foot { margin-top: 0; }
-/* 検索ダイアログ(トップの検索の帯・「/」キー) */
-.search-backdrop { position: fixed; inset: 0; z-index: 1; background: #1f232866; }
-body.search-modal .hdr-search { display: flex; position: fixed; z-index: 2; inset: 16px auto auto 50%; transform: translateX(-50%);
-  width: min(800px, calc(100vw - 32px)); height: auto; padding: 12px; background: var(--bg); border: 0; border-radius: 12px;
-  box-shadow: 0 8px 24px #1f232840; }
-body.search-modal .search { width: 100%; height: 36px; }
-body.search-modal { overflow: hidden; }
+/* 最終更新日(本文の末尾．トップは「すべてのページ」の下) */
+.updated { margin: 48px 0 0; font-size: 14px; color: var(--muted); }
+.home-all .updated { margin: 0; padding: 24px 32px; }
 
 @media (max-width: 1279px) {
   .rails { margin: 0; }
