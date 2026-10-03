@@ -34,7 +34,7 @@ body {
 .masthead .wiki-link { font: 600 1.1rem/1.4 var(--mincho); letter-spacing: .06em; color: var(--text); text-decoration: none; white-space: nowrap; }
 .masthead .wiki-link:hover .t { text-decoration: underline; }
 .masthead .wiki-link .go { width: .85em; height: .85em; margin-left: .2em; vertical-align: -.05em; fill: var(--text); }  /* 総覧の右の「別のページへ」アイコン */
-.masthead .sep { font: 200 1.1rem/1 var(--mincho); letter-spacing: 0; color: #bdc1c6; }  /* 「総覧」の文字の直前に置く細い明朝の縦線「｜」(総覧と同じ大きさ．リンクの中に含める) */
+.masthead .sep { display: inline-block; font: 200 1.1rem/1 var(--mincho); letter-spacing: 0; color: #bdc1c6; transform: scaleY(1.5); }  /* 「総覧」の文字の直前に置く細い明朝の縦線「｜」(総覧と同じ大きさ．リンクの中に含める)．scaleYで線の太さを変えずに上下へ伸ばす(中心は据え置き) */
 .filters {
   position: sticky; top: 0; z-index: 10;
   background: var(--bg); border-bottom: 1px solid transparent; transition: border-color .15s;
@@ -291,7 +291,7 @@ aside { position: sticky; top: calc(var(--bar-h) + 16px); }
 </aside>
 </div>
 <button type="button" class="to-top" aria-label="ページの先頭へ戻る">トップへ戻る</button>
-<div class="updated">最終更新 2026-10-04 00:41 JST</div>
+<div class="updated">最終更新 2026-10-04 00:48 JST</div>
 <script>
 (() => {
   const $ = (q, el = document) => el.querySelector(q);
