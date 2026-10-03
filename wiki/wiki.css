@@ -34,7 +34,7 @@ button { font: inherit; color: inherit; }
 .brand { color: var(--fg); text-decoration: none; white-space: nowrap;
   font: 600 1.6rem/1.4 "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif; letter-spacing: .06em; }
 .hdr-fill { flex: 1; }
-.hdr-search { padding: 0 16px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+.hdr-search { padding: 0 16px; border-left: 1px solid var(--line); }
 .search { position: relative; width: 387px; height: 32px; display: flex; align-items: center; gap: 8px;
   padding: 4px 4px 4px 10px; background: var(--subtle); border-radius: 8px; color: var(--muted); }
 .search input { flex: 1; min-width: 0; height: 100%; border: 0; outline: none; background: none; padding: 0;
@@ -50,13 +50,8 @@ button { font: inherit; color: inherit; }
 .results a:hover, .results a.sel { background: var(--subtle); }
 .results small { display: block; color: var(--muted); font-size: 12px; }
 .results .empty { padding: 6px 16px; color: var(--muted); font: 400 14px var(--sans); }
-.hdr-links { padding: 0 16px; }
-.hdr-link { color: var(--fg); text-decoration: none; white-space: nowrap; }
-.hdr-link:hover { text-decoration: underline; }
 .hdr-icon { display: none; width: 48px; justify-content: center; background: none; border: 0;
   border-left: 1px solid var(--line); cursor: pointer; padding: 0; }
-.hdr-menu { position: absolute; right: 8px; top: calc(var(--hdr-h) + 4px); background: var(--bg); border: 1px solid var(--line);
-  border-radius: 16px; padding: 16px; box-shadow: 0 8px 24px #1f232826; z-index: 40; display: block; }
 .subbar { height: var(--bar-h); display: flex; align-items: center; border-bottom: 1px solid var(--line); }
 .side-toggle { position: relative; width: 28px; height: 28px; margin: 0 12px; display: grid; place-items: center; flex: none;
   border: 1px solid transparent; border-radius: 6px; background: #818b9826; color: var(--muted); cursor: pointer; padding: 0; }
@@ -242,7 +237,6 @@ body.search-modal { overflow: hidden; }
   .hdr-search { display: none; position: absolute; inset: 0 0 1px 0; background: var(--bg); z-index: 35; border: 0; }
   body.search-open .hdr-search { display: flex; }
   .search { width: 100%; }
-  .hdr-links { display: none; }
   .hdr-icon { display: flex; }
   .hdr-brand { border-right: 0; }
   .brand { font-size: 1.25rem; }

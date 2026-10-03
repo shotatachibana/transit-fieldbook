@@ -31,9 +31,7 @@
   }
   scrollSideToCurrent();
 
-  // ヘッダー(狭い画面の検索・メニュー)
-  var menuBtn = document.getElementById('menu-btn'), menu = document.getElementById('hdr-menu');
-  menuBtn.addEventListener('click', function (ev) { ev.stopPropagation(); menu.hidden = !menu.hidden; menuBtn.setAttribute('aria-expanded', !menu.hidden); });
+  // ヘッダー(狭い画面の検索)
   document.getElementById('search-btn').addEventListener('click', function (ev) {
     if (heroSearch) { ev.stopPropagation(); openModal(); return; }
     body.classList.add('search-open'); input.focus();
@@ -106,7 +104,6 @@
   document.addEventListener('click', function (ev) {
     if (!ev.target.closest('.search')) box.hidden = true;
     if (!ev.target.closest('.hdr-search') && !ev.target.closest('#search-btn')) body.classList.remove('search-open');
-    if (!ev.target.closest('#hdr-menu')) { menu.hidden = true; menuBtn.setAttribute('aria-expanded', 'false'); }
     if (!ev.target.closest('.toc-bar')) closeToc();
   });
   document.addEventListener('keydown', function (ev) {
@@ -115,6 +112,6 @@
       ev.preventDefault();
       if (heroSearch) { openModal(); return; }
       if (!wide.matches && window.innerWidth < 768) body.classList.add('search-open'); input.focus();
-    } else if (ev.key === 'Escape') { closeModal(); closeToc(); menu.hidden = true; body.classList.remove('nav-open'); syncToggle(); }
+    } else if (ev.key === 'Escape') { closeModal(); closeToc(); body.classList.remove('nav-open'); syncToggle(); }
   });
 })();
