@@ -167,6 +167,8 @@ ul.cols { columns: 4 8em; padding-left: 1.2em; }
 footer.foot { margin-top: 64px; border-top: 2px solid var(--fg); padding: 32px 40px 48px; font-size: 14px; line-height: 21px;
   display: flex; gap: 24px; align-items: flex-start; justify-content: space-between; }
 footer.foot p { margin: 0 0 8px; }
+footer.foot > div { flex: 1; }
+footer.foot .foot-links { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }  /* GitHub Docsのフッターと同じ薄い区切り線 */
 footer.foot a { text-decoration: none; }
 footer.foot a:hover { text-decoration: underline; }
 footer.foot a.author, footer.foot a.plain { color: var(--fg); }  /* 作成者・公共交通野帳はリンクの青でなく文字色 */
