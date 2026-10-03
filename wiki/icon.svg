@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- 公共交通総覧のアイコン(野帳と同じ図柄で白黒を反転) -->
+  <rect x="1" y="1" width="30" height="30" rx="6.5" fill="#fff" stroke="#202124" stroke-width="2"/>
+  <rect x="8.5" y="5" width="15" height="17.5" rx="4.5" fill="#202124"/>
+  <rect x="11" y="8" width="10" height="6.5" rx="1.6" fill="#fff"/>
+  <circle cx="12.6" cy="18.4" r="1.4" fill="#fff"/>
+  <circle cx="19.4" cy="18.4" r="1.4" fill="#fff"/>
+  <path d="M11.5 23.5 8 28M20.5 23.5 24 28" stroke="#202124" stroke-width="2" stroke-linecap="round"/>
+</svg>
