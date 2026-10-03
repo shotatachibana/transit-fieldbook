@@ -31,10 +31,11 @@ body {
 .masthead .inner { display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 20px; padding: 18px 16px 10px; }
 .masthead h1 { margin: 0; font: 600 1.9rem/1.4 var(--mincho); letter-spacing: .06em; white-space: nowrap; }
 .masthead h1 a { color: var(--text); text-decoration: none; }
-.masthead .wiki-link { font: 600 1.1rem/1.4 var(--mincho); letter-spacing: .06em; color: var(--text); text-decoration: none; white-space: nowrap; }
+.masthead .wiki-link { display: inline-flex; align-items: center; font: 600 1.1rem/1.4 var(--mincho); letter-spacing: .06em; color: var(--text); text-decoration: none; white-space: nowrap; }  /* inline-flexで「総覧」を大きな「｜」の上下中央に揃える(ベースラインは先頭の「｜」でh1と揃う) */
 .masthead .wiki-link:hover .t { text-decoration: underline; }
+.masthead .wiki-link .t, .masthead .wiki-link .go { position: relative; top: -.06em; }  /* 「｜」のインクの中心が字面の中心よりわずかに上にあるため，文字とアイコンを少しだけ上げて真ん中に合わせる */
 .masthead .wiki-link .go { width: .85em; height: .85em; margin-left: .2em; vertical-align: -.05em; fill: var(--text); }  /* 総覧の右の「別のページへ」アイコン */
-.masthead .sep { display: inline-block; font: 200 1.1rem/1 var(--mincho); letter-spacing: 0; color: #bdc1c6; transform: scaleY(1.25); margin-right: .45em; }  /* 「総覧」の文字の直前に置く細い明朝の縦線「｜」(総覧と同じ大きさ．リンクの中に含める)．scaleYで線の太さを変えずに上下へ伸ばす(中心は据え置き) */
+.masthead .sep { font: 200 1.9rem/1 var(--mincho); letter-spacing: 0; color: #bdc1c6; margin-right: .45rem; }  /* 「総覧」の文字の直前に置く細い明朝の縦線「｜」(サイト名「公共交通野帳」と同じ大きさ．リンクの中に含める) */
 .filters {
   position: sticky; top: 0; z-index: 10;
   background: var(--bg); border-bottom: 1px solid transparent; transition: border-color .15s;
@@ -217,6 +218,7 @@ aside { position: sticky; top: calc(var(--bar-h) + 16px); }
 @media (max-width: 600px) {
   .masthead .inner { padding: 12px 16px 6px; }
   .masthead h1 { font-size: 1.55rem; }
+  .masthead .sep { font-size: 1.55rem; }
   .filters .inner { padding: 8px 6px; gap: 4px; }
   .opts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .filters .inner { flex-wrap: nowrap; }
@@ -291,7 +293,7 @@ aside { position: sticky; top: calc(var(--bar-h) + 16px); }
 </aside>
 </div>
 <button type="button" class="to-top" aria-label="ページの先頭へ戻る">トップへ戻る</button>
-<div class="updated">最終更新 2026-10-04 01:07 JST</div>
+<div class="updated">最終更新 2026-10-04 01:15 JST</div>
 <script>
 (() => {
   const $ = (q, el = document) => el.querySelector(q);
