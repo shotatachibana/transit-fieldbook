@@ -14,7 +14,7 @@
 html { scroll-padding-top: calc(var(--header-h) + 16px); }
 body {
   margin: 0; background: var(--bg); color: var(--fg); font-size: 16px; line-height: 1.5;
-  font-family: sans-serif;  /* 日本語版Wikipediaと同じ．Webフォントは使わず閲覧環境の標準ゴシック体 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";  /* GitHub Docsと同じ */
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -22,11 +22,8 @@ a:hover { text-decoration: underline; }
   position: sticky; top: 0; z-index: 20; height: var(--header-h); background: var(--bg);
   border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 16px; padding: 0 24px;
 }
-.brand { display: flex; align-items: center; gap: 8px; color: var(--fg); font-weight: 600; font-size: 16px; white-space: nowrap; }
+.brand { color: var(--fg); font: 600 1.6rem/1.4 "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif; letter-spacing: .06em; white-space: nowrap; }
 .brand:hover { text-decoration: none; }
-.brand .mark { width: 32px; height: 32px; border-radius: 50%; background: var(--fg); color: var(--bg);
-  display: grid; place-items: center; font-size: 14px; }
-.brand .sub { font-weight: 400; color: var(--fg); }
 .hdr .spacer { flex: 1; }
 .search { position: relative; width: min(100%, 360px); }
 .search input {
@@ -59,7 +56,7 @@ a:hover { text-decoration: underline; }
 .side li li li a { padding-left: 56px; color: var(--muted); }
 .side a:hover, .side summary:hover { background: var(--active); text-decoration: none; }
 .side a.current { background: var(--active); font-weight: 600; position: relative; color: var(--fg); }
-.side a.current::before { content: ""; position: absolute; left: -8px; top: 6px; bottom: 6px; width: 4px; border-radius: 6px; background: var(--accent); }
+.side a.current::before { content: ""; position: absolute; left: 6px; top: 7px; bottom: 7px; width: 3px; border-radius: 3px; background: var(--fg); }
 .side summary { cursor: pointer; list-style: none; font-weight: 600; }
 .side summary::-webkit-details-marker { display: none; }
 .side summary::after { content: "›"; float: right; transition: transform .1s; color: var(--muted); }
@@ -71,7 +68,7 @@ article { flex: 1; min-width: 0; max-width: 880px; }
 .crumbs { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
 .crumbs a { color: var(--accent); }
 .crumbs span.sep { margin: 0 6px; }
-h1 { font-size: 32px; font-weight: 600; line-height: 1.25; margin: 0 0 16px; overflow-wrap: anywhere; }
+h1 { font-family: "Mona Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; font-size: 32px; font-weight: 600; line-height: 1.25; margin: 0 0 16px; overflow-wrap: anywhere; }
 .lead { font-size: 20px; color: var(--muted); margin: 0 0 24px; }
 h2 { font-size: 24px; font-weight: 600; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line-muted); }
 h3 { font-size: 20px; font-weight: 600; margin: 32px 0 16px; }
@@ -120,10 +117,10 @@ footer.foot p { margin: 0 0 6px; max-width: 880px; }
   .content { padding: 24px 16px 40px; }
   footer.foot { padding: 24px 16px; }
   .hdr { padding: 0 16px; gap: 10px; }
-  .brand .sub { display: none; }
 }
 @media (max-width: 543px) {
   .hdr-link { display: none; }
   h1 { font-size: 26px; }
+  .brand { font-size: 1.25rem; }
   .lead { font-size: 17px; }
 }
