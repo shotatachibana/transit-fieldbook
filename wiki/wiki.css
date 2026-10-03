@@ -41,9 +41,6 @@ button { font: inherit; color: inherit; }
   font: 400 14px var(--sans); color: var(--fg); }
 .search input::placeholder { color: var(--muted); }
 .search:focus-within { outline: 2px solid var(--fg); outline-offset: -2px; }
-.search kbd { font: 400 14px/22px "Mona Sans Mono", ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--fg);
-  background: var(--bg); border: 1px solid var(--line); border-radius: 4px; height: 24px; min-width: 27px; text-align: center; }
-.search:focus-within kbd { display: none; }
 .results { position: absolute; top: 40px; left: 0; right: 0; background: var(--bg); border: 1px solid var(--line);
   border-radius: 12px; box-shadow: 0 8px 24px #1f232826; max-height: 70vh; overflow: auto; padding: 8px 0; z-index: 40; }
 .results a { display: block; padding: 6px 16px; color: var(--fg); text-decoration: none; font: 400 14px/1.5 var(--sans); }
@@ -172,7 +169,7 @@ footer.foot { margin-top: 64px; border-top: 2px solid var(--fg); padding: 32px 4
 footer.foot p { margin: 0 0 8px; }
 footer.foot a { text-decoration: none; }
 footer.foot a:hover { text-decoration: underline; }
-footer.foot a.author { color: var(--fg); }  /* 作成者だけはリンクの青でなく文字色 */
+footer.foot a.author, footer.foot a.plain { color: var(--fg); }  /* 作成者・公共交通野帳はリンクの青でなく文字色 */
 .to-top { flex: none; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; background: none; border: 0;
   cursor: pointer; font-size: 14px; white-space: nowrap; }
 .to-top svg { transform: rotate(180deg); }
@@ -197,9 +194,8 @@ body.home { --top-h: var(--hdr-h); }
 .home-link svg.ic { display: inline-block; margin-left: 4px; vertical-align: -2px; }
 .home-end { height: 64px; border-top: 1px solid var(--line); }
 body.home footer.foot { margin-top: 0; }
-/* 最終更新日(本文の末尾．トップは「すべてのページ」の下) */
+/* 最終更新日(本文の末尾．トップには出さない) */
 .updated { margin: 48px 0 0; font-size: 14px; color: var(--muted); }
-.home-all .updated { margin: 0; padding: 24px 32px; }
 
 @media (max-width: 1279px) {
   .rails { margin: 0; }
