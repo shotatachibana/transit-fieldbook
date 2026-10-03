@@ -180,6 +180,7 @@ footer.foot { margin-top: 64px; border-top: 2px solid var(--fg); padding: 32px 4
 footer.foot p { margin: 0 0 8px; }
 footer.foot a { text-decoration: none; }
 footer.foot a:hover { text-decoration: underline; }
+footer.foot a.author { color: var(--fg); }  /* 作成者だけはリンクの青でなく文字色 */
 .to-top { flex: none; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; background: none; border: 0;
   cursor: pointer; font-size: 14px; white-space: nowrap; }
 .to-top svg { transform: rotate(180deg); }
