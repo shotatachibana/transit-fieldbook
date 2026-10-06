@@ -22,7 +22,7 @@
 html { scroll-padding-top: calc(var(--top-h) + 16px); }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 var(--sans); }
 a { color: var(--link); text-decoration: none; }  /* リンクは普段は下線なし，カーソルを合わせたときだけ下線(2026-10-06ユーザー指示) */
-a:hover, a:focus-visible { text-decoration: underline; }
+a:where(:hover, :focus-visible) { text-decoration: underline; }  /* 優先度を最も低くし，サイト名等の個別の指定(下線なし)を優先する */
 svg.ic { width: 16px; height: 16px; fill: currentColor; flex: none; display: block; }
 button { font: inherit; color: inherit; }
 
