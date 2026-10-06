@@ -138,6 +138,9 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 .card h3 { margin: 0 0 8px; font-size: 18px; color: var(--link); }
 .card p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.6; }
 ul.cols { columns: 4 8em; padding-left: 1.2em; }
+ul.news { list-style: none; padding-left: 0; }
+ul.news li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+.news-date { display: inline-block; min-width: 9.5em; color: var(--muted); font-size: 14px; }
 .charts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 16px; }
 .chart { margin: 8px 0; border: 1px solid var(--line); border-radius: 6px; padding: 12px 12px 4px; }
 .chart figcaption { font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; }
