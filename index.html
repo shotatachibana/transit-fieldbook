@@ -211,7 +211,8 @@ main.loading { opacity: .4; transition: opacity .2s; }  /* 年別の記事を読
 .to-top::before { content: ""; width: 7px; height: 7px; margin-top: 4px; border: solid currentColor; border-width: 1.5px 0 0 1.5px; transform: rotate(45deg); }
 /* 広い画面ではサイドバーもスクロールに付いてくる．出典を広げて画面に収まらないときはサイドバーの中をスクロール */
 aside { position: sticky; top: calc(var(--bar-h) + 16px); max-height: calc(100vh - var(--bar-h) - 32px);
-  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }  /* スクロールはできるがバーは出さない(ユーザー指示) */
+aside::-webkit-scrollbar { display: none; }
 /* 出典の中身の下辺のつまみ．上下にドラッグして高さを変える */
 .src-resize { display: flex; justify-content: center; align-items: center; height: 14px; margin: 4px -18px -10px;
   cursor: ns-resize; touch-action: none; border-top: 1px solid var(--line); }
@@ -300,7 +301,7 @@ aside { position: sticky; top: calc(var(--bar-h) + 16px); max-height: calc(100vh
 </aside>
 </div>
 <button type="button" class="to-top" aria-label="ページの先頭へ戻る">トップへ戻る</button>
-<div class="updated">最終更新 2026-10-06 11:05 JST</div>
+<div class="updated">最終更新 2026-10-06 11:48 JST</div>
 <script>
 (() => {
   const $ = (q, el = document) => el.querySelector(q);
