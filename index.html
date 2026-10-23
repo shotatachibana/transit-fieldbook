@@ -16,10 +16,32 @@
   color-scheme: light;
   --bg: #ffffff; --text: #202124; --muted: #5f6368; --line: #dadce0;
   --error: #d93025; --surface: #f1f3f4; --hover: #f8f9fa;
+  --text2: #3c4043; --faint: #9aa0a6; --sep: #bdc1c6; --switch-off: #bdc1c6; --knob: #ffffff;
+  --l1: #f1f3f4; --l2: #dadce0; --l3: #9aa0a6; --l4: #5f6368; --l3-fg: #ffffff; --l4-fg: #ffffff;
+  --shadow: rgba(60, 64, 67, .15); --scrim: rgba(32, 33, 36, .4); --updated-bg: rgba(255, 255, 255, .9);
   --sans: "Google Sans Text", "Google Sans", "Noto Sans JP", sans-serif;
   --display: "Google Sans", "Noto Sans JP", sans-serif;
   --mincho: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --bar-h: 57px;
+}
+/* ダークモード(総覧と同じく，OSの設定に合わせる．色は総覧と同じPrimerのダーク) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0d1117; --text: #f0f6fc; --muted: #9198a1; --line: #3d444d;
+    --error: #f85149; --surface: #212830; --hover: #151b23;
+    --text2: #d1d7e0; --faint: #656c76; --sep: #3d444d; --switch-off: #3d444d; --knob: #0d1117;
+    --l1: #212830; --l2: #3d444d; --l3: #656c76; --l4: #9198a1; --l3-fg: #f0f6fc; --l4-fg: #0d1117;
+    --shadow: rgba(1, 4, 9, .6); --scrim: rgba(1, 4, 9, .6); --updated-bg: rgba(13, 17, 23, .9);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d1117; --text: #f0f6fc; --muted: #9198a1; --line: #3d444d;
+  --error: #f85149; --surface: #212830; --hover: #151b23;
+  --text2: #d1d7e0; --faint: #656c76; --sep: #3d444d; --switch-off: #3d444d; --knob: #0d1117;
+  --l1: #212830; --l2: #3d444d; --l3: #656c76; --l4: #9198a1; --l3-fg: #f0f6fc; --l4-fg: #0d1117;
+  --shadow: rgba(1, 4, 9, .6); --scrim: rgba(1, 4, 9, .6); --updated-bg: rgba(13, 17, 23, .9);
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -35,7 +57,7 @@ body {
 .masthead .wiki-link:hover .t { text-decoration: underline; }
 .masthead .wiki-link .t, .masthead .wiki-link .go { position: relative; top: -.06em; }  /* 「｜」のインクの中心が字面の中心よりわずかに上にあるため，文字とアイコンを少しだけ上げて真ん中に合わせる */
 .masthead .wiki-link .go { width: .85em; height: .85em; margin-left: .2em; vertical-align: -.05em; fill: var(--text); }  /* 総覧の右の「別のページへ」アイコン */
-.masthead .sep { font: 200 1.9rem/1 var(--mincho); letter-spacing: 0; color: #bdc1c6; margin-right: .07em; }  /* 「総覧」の文字の直前に置く細い明朝の縦線「｜」(サイト名「公共交通野帳」と同じ大きさ．リンクの中に含める)．全角の「｜」は左右に余白を持つので，.innerのcolumn-gapは0にし，野帳〜線と線〜総覧の見た目の間隔(約16px)が等しくなるようmargin-rightだけで微調整 */
+.masthead .sep { font: 200 1.9rem/1 var(--mincho); letter-spacing: 0; color: var(--sep); margin-right: .07em; }  /* 「総覧」の文字の直前に置く細い明朝の縦線「｜」(サイト名「公共交通野帳」と同じ大きさ．リンクの中に含める)．全角の「｜」は左右に余白を持つので，.innerのcolumn-gapは0にし，野帳〜線と線〜総覧の見た目の間隔(約16px)が等しくなるようmargin-rightだけで微調整 */
 .filters {
   position: sticky; top: 0; z-index: 10;
   background: var(--bg); border-bottom: 1px solid transparent; transition: border-color .15s;
@@ -59,22 +81,23 @@ body {
   transform: rotate(45deg); transition: transform .15s;
 }
 .fbtn[aria-expanded="true"]::after { margin-top: 4px; transform: rotate(-135deg); }
-.panel { position: absolute; left: 0; right: 0; top: 100%; background: var(--bg); box-shadow: 0 6px 10px rgba(60, 64, 67, .15); }
+.panel { position: absolute; left: 0; right: 0; top: 100%; background: var(--bg); box-shadow: 0 6px 10px var(--shadow); }
 .panel .inner { display: block; padding: 18px 16px 26px; }
 .panel .acts { display: flex; gap: 16px; margin: 0 0 10px; font-size: .8rem; }
 .panel .acts button { padding: 0; border: 0; background: none; color: var(--muted); font: inherit; cursor: pointer; text-decoration: underline; }
 .opts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px 24px; }
 .opts.row { display: flex; gap: 0 2px; overflow-x: auto; scrollbar-width: thin; }
 .opts.row .opt { flex: none; padding: 7px 12px; }
+.opts.row + .opts.row { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line); }  /* 年の下に月の行 */
 /* 選択中の項目は濃い黒，それ以外は薄いグレー．マウスを載せると下線 */
 .opt {
   padding: 7px 10px; border: 0; background: none;
-  color: #9aa0a6; font: 400 .95rem var(--sans); text-align: left; cursor: pointer;
+  color: var(--faint); font: 400 .95rem var(--sans); text-align: left; cursor: pointer;
 }
 .opt[aria-checked="true"] { color: var(--text); }
 .opt:hover, .opt:focus-visible { text-decoration: underline; text-underline-offset: 4px; outline: none; }
 .masthead { position: relative; z-index: 11; background: var(--bg); }  /* パネルを開いてもヘッダーは暗くしない */
-.scrim { position: fixed; inset: 0; z-index: 9; background: rgba(32, 33, 36, .4); }
+.scrim { position: fixed; inset: 0; z-index: 9; background: var(--scrim); }
 .layout {
   display: grid; gap: 28px; padding: 20px 16px 56px;
   grid-template-columns: minmax(0, 1fr) 300px; align-items: start;
@@ -110,6 +133,18 @@ a.item:hover { background: var(--hover); }
 .c-purple { --ph-bg: #f3e8fd; --ph-fg: #681da8; --ph-shape: #d7aefb; }
 .c-red    { --ph-bg: #fce8e6; --ph-fg: #a50e0e; --ph-shape: #f6aea9; }
 .c-yellow { --ph-bg: #fef7e0; --ph-fg: #8d5b00; --ph-shape: #fdd663; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .c-blue   { --ph-bg: #121d2f; --ph-fg: #9cc3ff; --ph-shape: #1f3a63; }
+  :root:not([data-theme="light"]) .c-green  { --ph-bg: #12261b; --ph-fg: #8fd8a4; --ph-shape: #1d4a2d; }
+  :root:not([data-theme="light"]) .c-purple { --ph-bg: #221632; --ph-fg: #d4b2fb; --ph-shape: #43286a; }
+  :root:not([data-theme="light"]) .c-red    { --ph-bg: #2c1515; --ph-fg: #f6aea9; --ph-shape: #5e2522; }
+  :root:not([data-theme="light"]) .c-yellow { --ph-bg: #2a2110; --ph-fg: #f2cc60; --ph-shape: #5a4214; }
+}
+:root[data-theme="dark"] .c-blue   { --ph-bg: #121d2f; --ph-fg: #9cc3ff; --ph-shape: #1f3a63; }
+:root[data-theme="dark"] .c-green  { --ph-bg: #12261b; --ph-fg: #8fd8a4; --ph-shape: #1d4a2d; }
+:root[data-theme="dark"] .c-purple { --ph-bg: #221632; --ph-fg: #d4b2fb; --ph-shape: #43286a; }
+:root[data-theme="dark"] .c-red    { --ph-bg: #2c1515; --ph-fg: #f6aea9; --ph-shape: #5e2522; }
+:root[data-theme="dark"] .c-yellow { --ph-bg: #2a2110; --ph-fg: #f2cc60; --ph-shape: #5a4214; }
 .body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .tag { padding: 0 9px; border-radius: 999px; font-size: .7rem; line-height: 1.6; background: var(--ph-bg); color: var(--ph-fg); }
@@ -119,7 +154,7 @@ a.item:hover h3 { text-decoration: underline; }
 .orig { font-size: .78rem; color: var(--muted); line-height: 1.5;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .summary {
-  margin: 4px 0 0; font-size: .82rem; color: #3c4043; line-height: 1.55;
+  margin: 4px 0 0; font-size: .82rem; color: var(--text2); line-height: 1.55;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .time { margin-top: auto; padding-top: 4px; align-self: flex-start; font-size: .75rem; color: var(--muted); }
@@ -153,11 +188,11 @@ aside .note a:hover, aside .note a:focus-visible { text-decoration: underline; }
 .cal-grid button.d { cursor: pointer; }
 /* マウスを載せた日と，記事リストで今画面上端にある日は枠を太く */
 .cal-grid button.d:hover, .cal-grid .d.cur { outline: 2px solid var(--text); outline-offset: -2px; }
-.cal-grid .d.l1 { background: #f1f3f4; }
-.cal-grid .d.l2 { background: #dadce0; }
-.cal-grid .d.l3 { background: #9aa0a6; color: #fff; }
-.cal-grid .d.l4 { background: #5f6368; color: #fff; }
-.cal-grid .d.l3 small, .cal-grid .d.l4 small { color: #fff; }
+.cal-grid .d.l1 { background: var(--l1); }
+.cal-grid .d.l2 { background: var(--l2); }
+.cal-grid .d.l3 { background: var(--l3); color: var(--l3-fg); }
+.cal-grid .d.l4 { background: var(--l4); color: var(--l4-fg); }
+.cal-grid .d.l3 small, .cal-grid .d.l4 small { color: inherit; }
 .cal-grid .d.today small { font-weight: 700; color: inherit; }
 details.src summary {
   display: flex; align-items: center; gap: 8px; cursor: pointer; list-style: none;
@@ -185,10 +220,10 @@ details.src summary .n { font-size: .75rem; color: var(--muted); }
 .st.err { color: var(--error); }
 .switch { position: relative; flex: none; width: 32px; height: 18px; margin-top: 2px; }
 .switch input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; z-index: 1; }
-.switch span { position: absolute; inset: 0; border-radius: 999px; background: #bdc1c6; transition: background .15s; }
+.switch span { position: absolute; inset: 0; border-radius: 999px; background: var(--switch-off); transition: background .15s; }
 .switch span::after {
   content: ""; position: absolute; left: 2px; top: 2px; width: 14px; height: 14px; border-radius: 50%;
-  background: #fff; transition: transform .15s;
+  background: var(--knob); transition: transform .15s;
 }
 .switch input:checked + span { background: var(--text); }
 .switch input:checked + span::after { transform: translateX(14px); }
@@ -196,14 +231,14 @@ details.src summary .n { font-size: .75rem; color: var(--muted); }
 main.loading { opacity: .4; transition: opacity .2s; }  /* 年別の記事を読み込み中 */
 .updated {
   position: fixed; right: 12px; bottom: 10px; z-index: 10;
-  padding: 2px 10px; border-radius: 999px; background: rgba(255, 255, 255, .9);
+  padding: 2px 10px; border-radius: 999px; background: var(--updated-bg);
   font-size: .72rem; color: var(--muted);
 }
 .to-top {
   position: fixed; right: 12px; bottom: 40px; z-index: 10;
   display: flex; align-items: center; gap: 4px; height: 34px; padding: 0 14px;
   border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--text);
-  font: 500 .8rem var(--display); cursor: pointer; box-shadow: 0 1px 3px rgba(60, 64, 67, .2);
+  font: 500 .8rem var(--display); cursor: pointer; box-shadow: 0 1px 3px var(--shadow);
   opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s;
 }
 .to-top.show { opacity: 1; visibility: visible; transform: none; }
@@ -244,7 +279,7 @@ aside::-webkit-scrollbar { display: none; }
 }
 </style>
 </head>
-<body data-today="2026-10-23" data-years="2025">
+<body data-today="2026-10-24" data-years="2025">
 <header class="masthead"><div class="inner">
 <h1><a href="./">公共交通野帳</a></h1>
 <a class="wiki-link" href="wiki/" aria-label="公共交通総覧"><span class="sep" aria-hidden="true">｜</span><span class="t">公共交通総覧</span><svg class="go" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>
@@ -256,7 +291,8 @@ aside::-webkit-scrollbar { display: none; }
 <label class="search"><input type="search" id="q" placeholder="検索" aria-label="記事を検索">
 <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></label>
 </div>
-<div class="panel" id="p-year" hidden><div class="inner"><div class="opts row" role="menu" aria-label="年"><button type="button" class="opt" role="menuitemradio" data-v="2026" aria-checked="true">2026</button><button type="button" class="opt" role="menuitemradio" data-v="2025" aria-checked="false">2025</button></div></div></div>
+<div class="panel" id="p-year" hidden><div class="inner"><div class="opts row" role="menu" aria-label="年"><button type="button" class="opt y" role="menuitemradio" data-v="2026" aria-checked="true">2026</button><button type="button" class="opt y" role="menuitemradio" data-v="2025" aria-checked="false">2025</button></div>
+<div class="opts row" role="menu" aria-label="月"><button type="button" class="opt m" role="menuitemradio" data-v="" aria-checked="true">すべての月</button><button type="button" class="opt m" role="menuitemradio" data-v="01" aria-checked="false">1月</button><button type="button" class="opt m" role="menuitemradio" data-v="02" aria-checked="false">2月</button><button type="button" class="opt m" role="menuitemradio" data-v="03" aria-checked="false">3月</button><button type="button" class="opt m" role="menuitemradio" data-v="04" aria-checked="false">4月</button><button type="button" class="opt m" role="menuitemradio" data-v="05" aria-checked="false">5月</button><button type="button" class="opt m" role="menuitemradio" data-v="06" aria-checked="false">6月</button><button type="button" class="opt m" role="menuitemradio" data-v="07" aria-checked="false">7月</button><button type="button" class="opt m" role="menuitemradio" data-v="08" aria-checked="false">8月</button><button type="button" class="opt m" role="menuitemradio" data-v="09" aria-checked="false">9月</button><button type="button" class="opt m" role="menuitemradio" data-v="10" aria-checked="false">10月</button><button type="button" class="opt m" role="menuitemradio" data-v="11" aria-checked="false">11月</button><button type="button" class="opt m" role="menuitemradio" data-v="12" aria-checked="false">12月</button></div></div></div>
 <div class="panel" id="p-country" hidden><div class="inner"><div class="acts"><button type="button" data-all="1">すべて選択</button><button type="button">選択を解除</button></div>
 <div class="opts" role="menu" aria-label="国(複数選択できます)"><button type="button" class="opt" role="menuitemcheckbox" data-v="日本" aria-checked="true">日本</button><button type="button" class="opt" role="menuitemcheckbox" data-v="米国" aria-checked="false">米国</button><button type="button" class="opt" role="menuitemcheckbox" data-v="英国" aria-checked="false">英国</button><button type="button" class="opt" role="menuitemcheckbox" data-v="EU" aria-checked="false">EU</button><button type="button" class="opt" role="menuitemcheckbox" data-v="国際" aria-checked="false">国際</button><button type="button" class="opt" role="menuitemcheckbox" data-v="その他" aria-checked="false">その他</button></div></div></div>
 <div class="panel" id="p-kind" hidden><div class="inner"><div class="acts"><button type="button" data-all="1">すべて選択</button><button type="button">選択を解除</button></div>
@@ -531,23 +567,24 @@ TEL0536-62-0522（平日8：30～17：15）</p></div></a></li><li class="it" dat
 </aside>
 </div>
 <button type="button" class="to-top" aria-label="ページの先頭へ戻る">トップへ戻る</button>
-<div class="updated">最終更新 2026-10-23 23:14 JST</div>
+<div class="updated">最終更新 2026-10-24 08:50 JST</div>
 <script>
 (() => {
   const $ = (q, el = document) => el.querySelector(q);
   const $$ = (q, el = document) => [...el.querySelectorAll(q)];
   let items = $$('li.it'), days = $$('section.day');
   const bar = $('.filters'), head = $('.masthead'), scrim = $('.scrim');
-  const yearOpts = $$('#p-year .opt'), countryOpts = $$('#p-country .opt'), kindOpts = $$('#p-kind .opt'), q = $('#q');
+  const yearOpts = $$('#p-year .y'), monthOpts = $$('#p-year .m'), countryOpts = $$('#p-country .opt'), kindOpts = $$('#p-kind .opt'), q = $('#q');
   const today = document.body.dataset.today;
   const checked = opts => opts.filter(o => o.getAttribute('aria-checked') === 'true').map(o => o.dataset.v);
-  const st = { year: checked(yearOpts)[0], country: new Set(checked(countryOpts)), kind: new Set(checked(kindOpts)), terms: [], off: new Set() };
+  const st = { year: checked(yearOpts)[0], month: checked(monthOpts)[0] || '', country: new Set(checked(countryOpts)), kind: new Set(checked(kindOpts)), terms: [], off: new Set() };
   const multi = { country: countryOpts, kind: kindOpts };
   let month = null;  // カレンダーに表示中の月 'YYYY-MM'
   let visDays = [];   // 表示中の日付見出し(新しい順)
   let curDay = null;  // 記事リストで今画面上端にある日 'YYYY-MM-DD'(カレンダーで枠を太くする)
 
-  const inYear = d => d.startsWith(st.year);
+  // 年と月(月は空なら「すべて」)
+  const inYear = d => d.startsWith(st.year) && (!st.month || d.slice(5, 7) === st.month);
   // 検索: 空白で区切った語をすべて含む記事(タイトル・原題・要約・出典名・国)
   const text = new Map(items.map(li => [li, li.textContent.toLowerCase()]));
   // 既定の年以外の記事は年ごとの断片(y/{年}.html)にあり，その年を選んだときに読み込んで差し込む
@@ -574,6 +611,7 @@ TEL0536-62-0522（平日8：30～17：15）</p></div></a></li><li class="it" dat
 
   function apply() {
     yearOpts.forEach(o => o.setAttribute('aria-checked', o.dataset.v === st.year));
+    monthOpts.forEach(o => o.setAttribute('aria-checked', o.dataset.v === st.month));
     Object.entries(multi).forEach(([k, opts]) => {
       opts.forEach(o => o.setAttribute('aria-checked', st[k].has(o.dataset.v)));
     });
@@ -597,6 +635,7 @@ TEL0536-62-0522（平日8：30～17：15）</p></div></a></li><li class="it" dat
   // カレンダー
   const ym = d => d.slice(0, 7);
   function range() {
+    if (st.month) return [`${st.year}-${st.month}`, `${st.year}-${st.month}`];  // 月を選んだときはその月だけ
     const lo = `${st.year}-01`;
     const hi = st.year === today.slice(0, 4) ? ym(today) : `${st.year}-12`;
     return [lo < hi ? lo : hi, hi];
@@ -676,10 +715,15 @@ TEL0536-62-0522（平日8：30～17：15）</p></div></a></li><li class="it" dat
   $$('.fbtn').forEach(b => b.addEventListener('click', () => openPanel(b.getAttribute('aria-controls'))));
   scrim.addEventListener('click', () => openPanel(null));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') openPanel(null); });
+  // 年を選んでもパネルは閉じない(続けて月を選べるように)．月を選ぶと閉じる
   yearOpts.forEach(o => o.addEventListener('click', async () => {
     st.year = o.dataset.v;
-    openPanel(null);
     await load(st.year);
+    apply();
+  }));
+  monthOpts.forEach(o => o.addEventListener('click', () => {
+    st.month = o.dataset.v;
+    openPanel(null);
     apply();
   }));
   Object.entries(multi).forEach(([k, opts]) => {
