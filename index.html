@@ -279,6 +279,8 @@ aside::-webkit-scrollbar { display: none; }
 @media (max-width: 350px) {
   .filters .inner { flex-wrap: wrap; }  /* ごく狭い画面だけは検索欄を次の行へ */
 }
+.embed .tag.src { cursor: pointer; text-decoration: underline dotted; text-underline-offset: 2px; }
+.embed .tag.src:hover { text-decoration-style: solid; }
 </style>
 </head>
 <body data-today="2026-11-22" data-years="2025">
@@ -916,7 +918,7 @@ TEL0536-62-0522（平日8：30～17：15）</p></div></a></li><li class="it" dat
 </aside>
 </div>
 <button type="button" class="to-top" aria-label="ページの先頭へ戻る">トップへ戻る</button>
-<div class="updated">最終更新 2026-11-22 00:27 JST</div>
+<div class="updated">最終更新 2026-11-22 02:44 JST</div>
 <script>
 (() => {
   const $ = (q, el = document) => el.querySelector(q);
@@ -1135,6 +1137,19 @@ TEL0536-62-0522（平日8：30～17：15）</p></div></a></li><li class="it" dat
     apply();
   }));
   apply();
+})();
+// 公共交通地図野帳(作成者の地図．非公開)に埋め込まれたとき(?embed): 出典の名札を押すと，その記事を地図の側に知らせる(地図がその事業者を出す)
+(() => {
+  if (window.parent === window || !new URLSearchParams(location.search).has('embed')) return;
+  document.documentElement.classList.add('embed');
+  document.addEventListener('click', e => {
+    const tag = e.target.closest('.tag.src');
+    if (!tag) return;
+    const a = tag.closest('a.item'), li = tag.closest('li.it');
+    if (!a) return;
+    e.preventDefault(); e.stopPropagation();
+    window.parent.postMessage({ type: 'fieldbook:source', url: a.href, src: li ? li.dataset.src : '', name: tag.textContent }, '*');
+  }, true);
 })();
 </script>
 </body>
