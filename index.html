@@ -279,6 +279,8 @@ aside::-webkit-scrollbar { display: none; }
 @media (max-width: 350px) {
   .filters .inner { flex-wrap: wrap; }  /* ごく狭い画面だけは検索欄を次の行へ */
 }
+.embed .map-go { display: inline-block; margin-left: 4px; padding: 0 8px; border: 1px solid currentColor; border-radius: 999px; color: #0969da; font-size: 12px; line-height: 20px; cursor: pointer; }
+.embed .map-go:hover { background: #0969da; color: #fff; }
 .embed .tag.src { cursor: pointer; text-decoration: underline dotted; text-underline-offset: 2px; }
 .embed .tag.src:hover { text-decoration-style: solid; }
 </style>
@@ -918,7 +920,7 @@ TEL0536-62-0522（平日8：30～17：15）</p></div></a></li><li class="it" dat
 </aside>
 </div>
 <button type="button" class="to-top" aria-label="ページの先頭へ戻る">トップへ戻る</button>
-<div class="updated">最終更新 2026-11-22 03:13 JST</div>
+<div class="updated">最終更新 2026-11-22 03:16 JST</div>
 <script>
 (() => {
   const $ = (q, el = document) => el.querySelector(q);
@@ -1138,19 +1140,36 @@ TEL0536-62-0522（平日8：30～17：15）</p></div></a></li><li class="it" dat
   }));
   apply();
 })();
-// 公共交通地図野帳(作成者の地図．非公開)に埋め込まれたとき(?embed): 出典の名札を押すと，その記事を地図の側に知らせる(地図がその事業者を出す)
+// 公共交通地図野帳(作成者の地図．非公開)に埋め込まれたとき(?embed): 記事に「地図で表示」を付け，押すとその記事を地図の側に知らせる(地図がその事業者を出す)．
+// 出典の名札を押しても同じ．「地図で表示」は見えている記事にだけ付ける(全記事には付けない)
 (() => {
   if (window.parent === window || !new URLSearchParams(location.search).has('embed')) return;
   document.documentElement.classList.add('embed');
   document.querySelectorAll('.wiki-link').forEach(x => x.remove());  // 総覧へのリンクは要らない(隠さずに取り除く)
-  document.addEventListener('click', e => {
-    const tag = e.target.closest('.tag.src');
-    if (!tag) return;
-    const a = tag.closest('a.item'), li = tag.closest('li.it');
+  const send = el => {
+    const a = el.closest('a.item'), li = el.closest('li.it');
     if (!a) return;
+    const tag = a.querySelector('.tag.src');
+    window.parent.postMessage({ type: 'fieldbook:source', url: a.href, src: li ? li.dataset.src : '', name: tag ? tag.textContent : '' }, '*');
+  };
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.map-go, .tag.src');
+    if (!b || !b.closest('a.item')) return;
     e.preventDefault(); e.stopPropagation();
-    window.parent.postMessage({ type: 'fieldbook:source', url: a.href, src: li ? li.dataset.src : '', name: tag.textContent }, '*');
+    send(b);
   }, true);
+  const addButtons = () => {
+    document.querySelectorAll('section.day:not([hidden]) li.it:not([hidden]) .tags').forEach(tags => {
+      if (tags.querySelector('.map-go')) return;
+      const b = document.createElement('span');
+      b.className = 'map-go'; b.setAttribute('role', 'button'); b.tabIndex = 0; b.textContent = '地図で表示';
+      tags.appendChild(b);
+    });
+  };
+  addButtons();
+  let timer = 0;
+  new MutationObserver(() => { clearTimeout(timer); timer = setTimeout(addButtons, 100); })
+    .observe(document.querySelector('main') || document.body, { subtree: true, attributes: true, attributeFilter: ['hidden'] });
 })();
 </script>
 </body>
